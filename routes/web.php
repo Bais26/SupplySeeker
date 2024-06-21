@@ -1,13 +1,17 @@
 <?php
 
+
+use App\Http\Controllers\HitungController;
+use App\Http\Controllers\KriteriaController;
+// use App\Http\Controllers\nilaiController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AlternativeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
+|   
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
@@ -15,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/testlog', function () {
-    return view('page.test');
+    return view('admin.test');
 });
 Route::get('/', function () {
     return view('welcome');
@@ -29,8 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::resource('/alternative', \App\Http\Controllers\AlternativeController::class);
-Route::get('/home', function () {
-  return redirect()->route('dashboard');  
-});
+Route::resource('alternative', AlternativeController::class);
+Route::resource('kriteria', KriteriaController::class);
+// Route::resource('nilai', nilaiController::class);
+Route::get('/hitung', [HitungController::class,'hitungWP'])->name('hitung');
+
+// Route::get('/home', function () {
+//   return redirect()->route('dashboard');  
+// });
+
+
 require __DIR__.'/auth.php';

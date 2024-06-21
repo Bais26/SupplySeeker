@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\alternative;
+use App\Models\Kriteria;
 use Illuminate\Http\Request;
 
 class AlternativeController extends Controller
@@ -12,10 +13,11 @@ class AlternativeController extends Controller
     public function index()
     {
         //get posts
-        $alternatives = alternative::latest()->paginate(5);
+        $kriteria = Kriteria::orderby('id', 'asc')->get();
+        $alternatives = alternative::orderBy('created_at', 'asc')->get();
 
         //render view with posts
-        return view('page.alternative.index', compact('alternatives'));
+        return view('admin.alternative.index', compact('kriteria','alternatives'));
     }
 
     /**
@@ -23,7 +25,8 @@ class AlternativeController extends Controller
      */
     public function create()
     {
-        return view('page.alternative.create');
+        $kriteria = Kriteria::orderby('id', 'asc')->get();
+        return view('admin.alternative.create',compact('kriteria'));
     }
 
     /**
@@ -31,7 +34,23 @@ class AlternativeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama_supplier' => 'required',
+            'C1' => 'required',
+            'C2' => 'required',
+            'C3' => 'required',
+            'C4' => 'required',
+            'C5' => 'required',
+        ]);
+        $alternatives = alternative::create([
+            'nama_supplier' => $request->nama_supplier,
+            'C1' => $request->C1,
+            'C2' => $request->C2,
+            'C3' => $request->C3,
+            'C4' => $request->C4,
+            'C5' => $request->C5,
+        ]);
+        return redirect()->back()->with('success','Data berhasil disimpan');
     }
 
     /**
@@ -47,7 +66,8 @@ class AlternativeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $alternatives = Alternative::findOrFail($id);
+        return view('admin.alternative.edit', compact('alternatives'));
     }
 
     /**
@@ -55,7 +75,25 @@ class AlternativeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'nama_supplier' => 'required',
+            'C1' => 'required',
+            'C2' => 'required',
+            'C3' => 'required',
+            'C4' => 'required',
+            'C5' => 'required',
+        ]);
+        $alternatives = alternative::create([
+            'nama_supplier' => $request->nama_supplier,
+            'C1' => $request->C1,
+            'C2' => $request->C2,
+            'C3' => $request->C3,
+            'C4' => $request->C4,
+            'C5' => $request->C5,
+        ]);
+        alternative::whereId($id)->update($alternatives);
+
+        return redirect()->back()->with('success','Data berhasil disimpan');
     }
 
     /**
@@ -63,6 +101,7 @@ class AlternativeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Alternative::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Data alternative berhasil dihapus');
     }
 }

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>SupplySeeker</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,58 +15,55 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="font-sans antialiased">
     <!-- Navbar Section -->
-    <nav class="bg-green-800 text-white sticky top-0">
-        <div class="container mx-auto flex justify-between items-center py-4">
+    <header class="body-font bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-white sticky top-0">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <div class="flex items-center">
                 <img class="h-10" src="{{asset("./image/logo.png")}}" alt="SupplierSeeker">
                 <a href="#" class="text-2xl font-bold">SupplySeeker</a>
             </div>
-            <div>
-            <ul class="flex space-x-6">
-                <li><a href="#" class="hover:text-gray-300">Beranda</a></li>
-                <li><a href="#layanan" class="hover:text-gray-300">Layanan</a></li>
-                <li><a href="#fitur" class="hover:text-gray-300">Fitur</a></li>
-                <li><a href="#kontak" class="hover:text-gray-300">Kontak</a></li>
-            </ul>
-            </div>`
-            <div>
-                <!-- <a href="/login" class="bg-white text-green-800 font-semibold py-2 px-4 rounded hover:bg-gray-100">Login</a> -->
-                @if (Route::has('login'))
-                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+            <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+            <a href="#" class="hover:text-gray-300 mr-10">Beranda</a>
+            <a href="#layanan" class="hover:text-gray-300 mr-10">Layanan</a>
+            <a href="#fitur" class="hover:text-gray-300 mr-10">Fitur</a>
+            <a href="#kontak" class="hover:text-gray-300 mr-10">Kontak</a>
+            </nav>
+            @if (Route::has('login'))
+                    <div class="sm:top-0 sm:right-0 p-6 text-right z-10">
                         @auth
                             <a href="{{ url('/admin') }}"
-                                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard admin</a>
+                                class="font-semibold text-gray-50 hover:text-gray-300">Dashboard
+                                admin</a>
                         @else
                             <a href="{{ route('login') }}"
-                                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
+                                class="font-semibold text-gray-50 hover:text-gray-300">Log
                                 in</a>
 
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}"
-                                    class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                                    class="ml-4 font-semibold text-gray-50 hover:text-gray-300">Register</a>
                             @endif
-                        @endauth    
+                        @endauth
                     </div>
                 @endif
-            </div>
         </div>
-    </nav>
+    </header>
     <!-- Hero Section -->
-    <section class="bg-green-800 text-white">
+    <section class="bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-white">
         <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
             <div
-                class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium">Memilih yang terbaik untuk Bisnis Anda
+                class="lg:flex-grow font md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-semibold">Memilih yang terbaik untuk Bisnis Anda
                 </h1>
                 <p class="mb-8 leading-relaxed">SPK ini Menentukan Supplier Terbaik untuk Bisnis Anda, dengan Sistem
                     ini, Anda dapat
                     mengevaluasi dan memilih supplier terbaik berdasarkan kriteria yang relevan, dan memastikan kualitas
                     dan efisien dalam memilih supplier</p>
                 <div class="flex justify-center">
-                    <a href="/login"
-                        class="mt-6 inline-block bg-white text-green-800 font-semibold py-2 px-4 rounded">Tentukan
+                    <a href="/admin"
+                        class="mt-6 inline-block bg-white text-blue-bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-[#333] font-semibold py-2 px-4 rounded">Tentukan
                         Supplier</a>
                 </div>
             </div>
@@ -77,27 +74,27 @@
         </div>
     </section>
     <!-- Layanan Kami Section -->
-    <section id="layanan" class="py-32 bg-green-100">
+    <section id="layanan" class="py-32 bg-purple-100">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl font-bold">Layanan Kami</h2>
             <p class="mt-2">SupplySeeker hadir untuk menjadi solusi bagi kamu</p>
             <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-12 rounded-lg shadow-lg">
-                    <i class="bi bi-person-check text-green-500" style="font-size: 2rem;"></i>
+                    <i class="bi bi-person-check text-violet-500" style="font-size: 2rem;"></i>
                     <h3 class="text-xl font-bold">Pemilihan Supplier</h3>
                     <p class="mt-4">Kami menyediakan peringkat untuk setiap supplier berdasarkan kriteria yang telah
                         diterapkan, sistem ini membantu Anda untuk memilih suuplier terbaik yang sesuai dengan kebutuhan
                         Anda</p>
                 </div>
                 <div class="bg-white p-12 rounded-lg shadow-lg">
-                    <i class="bi bi-bar-chart-line text-green-500" style="font-size: 2rem;"></i>
+                    <i class="bi bi-bar-chart-line text-violet-500" style="font-size: 2rem;"></i>
                     <h3 class="text-xl font-bold">Benchmarking Supplier</h3>
                     <p class="mt-4">Kami menyediakan alat untuk membandingkan supplier Anda dengan Supplier lain di
                         industri yang sama, ini membantu anda untuk menentukan supplier yang tepat tanpa memakan waktu
                         yang lama untuk membandingkan</p>
                 </div>
                 <div class="bg-white p-12 rounded-lg shadow-lg">
-                    <i class="bi bi-lightbulb text-green-500" style="font-size: 2rem;"></i>
+                    <i class="bi bi-lightbulb text-violet-500" style="font-size: 2rem;"></i>
                     <h3 class="text-xl font-bold">Rekomendasi Optimal</h3>
                     <p class="mt-4">Berdasarkan data yang dikumpulkan dan dianalis, sistem kami memberikan rekomendasi
                         supplier terbaik sesuai apa yang anda butuhkan</p>
@@ -107,7 +104,7 @@
     </section>
 
     <!-- Fitur Section -->
-    <section id="fitur" class="py-12 bg-green-100">
+    <section id="fitur" class="py-12 bg-purple-100">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl font-bold">Fitur di SupplySeeker</h2>
             <p class="mt-2">Sistem Pendukung Keputusan kami menyediakan berbagai fitur untuk membantu Anda membuat
@@ -115,7 +112,7 @@
             <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Data Kriteria -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="text-green-500 mb-4">
+                    <div class="text-violet-500 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -127,7 +124,7 @@
                 </div>
                 <!-- Data Alternatif -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="text-green-500 mb-4">
+                    <div class="text-violet-500 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -140,7 +137,7 @@
                 </div>
                 <!-- Sub Kriteria -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="text-green-500 mb-4">
+                    <div class="text-violet-500 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -152,7 +149,7 @@
                 </div>
                 <!-- Data Penilaian -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="text-green-500 mb-4">
+                    <div class="text-violet-500 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -165,7 +162,7 @@
                 </div>
                 <!-- Data Perhitungan Akhir -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="text-green-500 mb-4">
+                    <div class="text-violet-500 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -222,13 +219,13 @@
                         class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                 </div>
                 <button
-                    class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Button</button>
+                    class="text-white bg-violet-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Kirim</button>
             </div>
         </div>
     </section>
 
     <!-- footer -->
-    <footer class="body-font bg-green-800">
+    <footer class="body-font bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-[#333]">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
                 <img class="h-10 w-auto" src="{{asset("./image/logo.png")}}" alt="SupplierSeeker">

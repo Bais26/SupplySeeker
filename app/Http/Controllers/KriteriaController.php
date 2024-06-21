@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Kriteria;
 use Illuminate\Http\Request;
 
 class KriteriaController extends Controller
@@ -11,7 +11,8 @@ class KriteriaController extends Controller
      */
     public function index()
     {
-        //
+        $kriteria = Kriteria::orderby('kode_kriteria', 'asc')->get();
+        return view('admin.kriteria.index', compact('kriteria'));
     }
 
     /**
@@ -19,7 +20,7 @@ class KriteriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kriteria.create');
     }
 
     /**
@@ -27,8 +28,26 @@ class KriteriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi data
+        $this->validate($request, [
+            'kode_kriteria' => 'required|string',
+            'nama_kriteria' => 'required|string',
+            'bobot_kriteria' => 'required|integer',
+            'type' => 'required|string',
+        ]);
+        $kriteria = Kriteria::create([
+            'kode_kriteria' => $request->kode_kriteria,
+            'nama_kriteria' => $request->nama_kriteria,
+            'bobot_kriteria' => $request->bobot_kriteria,
+            'type' => $request->type,
+        ]);
+    
+        // dd($validatedData);
+    
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Data kriteria berhasil ditambahkan');
     }
+    
 
     /**
      * Display the specified resource.
@@ -43,7 +62,8 @@ class KriteriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kriteria = Kriteria::findOrFail($id);
+        return view('admin.kriteria.edit', compact('kriteria'));
     }
 
     /**
@@ -51,7 +71,21 @@ class KriteriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'kode_kriteria' => 'required|string',
+            'nama_kriteria' => 'required|string',
+            'bobot_kriteria' => 'required|integer',
+            'type' => 'required|string',
+        ]);
+        $kriteria = Kriteria::create([
+            'kode_kriteria' => $request->kode_kriteria,
+            'nama_kriteria' => $request->nama_kriteria,
+            'bobot_kriteria' => $request->bobot_kriteria,
+            'type' => $request->type,
+        ]);
+        Kriteria::whereId($id)->update($kriteria);
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Data kriteria berhasil ditambahkan');
     }
 
     /**
@@ -59,6 +93,7 @@ class KriteriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Kriteria::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Data kriteria berhasil dihapus');
     }
 }
