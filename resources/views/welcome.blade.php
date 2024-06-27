@@ -13,34 +13,56 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
     <!-- Styles -->
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{ asset('../css/app.css') }}" rel="stylesheet">
+    @vite(['resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased">
-    <!-- Navbar Section -->
-    <header class="body-font bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-white sticky top-0">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-            <div class="flex items-center">
-                <img class="h-10" src="{{asset("./image/logo.png")}}" alt="SupplierSeeker">
-                <a href="#" class="text-2xl font-bold">SupplySeeker</a>
-            </div>
-            <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-            <a href="#" class="hover:text-gray-300 mr-10">Beranda</a>
-            <a href="#layanan" class="hover:text-gray-300 mr-10">Layanan</a>
-            <a href="#fitur" class="hover:text-gray-300 mr-10">Fitur</a>
-            <a href="#kontak" class="hover:text-gray-300 mr-10">Kontak</a>
-            </nav>
-            @if (Route::has('login'))
-                    <div class="sm:top-0 sm:right-0 p-6 text-right z-10">
+<nav class="bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-white sticky top-0">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+    <img class="h-10" src="{{asset('./image/logo.png')}}" alt="SupplierSeeker">
+        <span class="self-center text-2xl font-semibold whitespace-nowrap">SupplySeeker</span>
+    </a>
+    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden focus:outline-none focus:ring-1 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
+        <li>
+          <a href="/" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0" aria-current="page">Home</a>
+        </li>
+        <li>
+          <a href="#layanan" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Layanan</a>
+        </li>
+        <li>
+          <a href="#fitur" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Fitur</a>
+        </li>
+        <li>
+          <a href="#kontak" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Kontak</a>
+        </li>
+        @if (Route::has('login'))
+                    <div class="md:hidden block">
                         @auth
-                            <a href="{{ url('/admin') }}"
-                                class="font-semibold text-gray-50 hover:text-gray-300">Dashboard
+                            <a href="{{ url('/admin') }}" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0 font-bold text-center border">Dashboard
                                 admin</a>
                         @else
-                            <a href="{{ route('login') }}"
-                                class="font-semibold text-gray-50 hover:text-gray-300">Log
-                                in</a>
-
+                            <a href="{{ route('login') }}" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Log in</a>
+                            <a href="{{ route('register') }}" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">register</a>
+                        @endauth
+                    </div>
+                @endif
+      </ul>
+      @if (Route::has('login'))
+                    <div class="hidden md:block">
+                        @auth
+                            <a href="{{ url('/admin') }}" class="font-semibold text-gray-50 hover:text-gray-300">Dashboard
+                                admin</a>
+                        @else
+                            <a href="{{ route('login') }}" class="font-semibold text-gray-50 hover:text-gray-300">Log in</a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}"
                                     class="ml-4 font-semibold text-gray-50 hover:text-gray-300">Register</a>
@@ -48,8 +70,60 @@
                         @endauth
                     </div>
                 @endif
+    </div>
+  </div>
+</nav>
+
+    <!-- Navbar Section
+    <header class="body-font bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-white sticky top-0">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <img class="h-10" src="{{asset('./image/logo.png')}}" alt="SupplierSeeker">
+                <div class="flex items-center mr-10">
+                    <a href="#" class="ml-3 text-2xl font-bold">SupplySeeker</a>
+                </div>
+                <button id="navbar-toggler" class="text-white md:hidden">
+                    <i class="bi bi-list text-3xl"></i>
+                </button>
+
+            </div>
+            <nav id="navbar-collapse"
+                class="hidden md:flex md:flex-row md:ml-auto md:mr-auto ">
+                <a href="#" class="hover:text-gray-300 md:mr-10 ">Beranda</a>
+                <a href="#layanan" class="hover:text-gray-300 md:mr-10">Layanan</a>
+                <a href="#fitur" class="hover:text-gray-300 md:mr-10">Fitur</a>
+                <a href="#kontak" class="hover:text-gray-300 md:mr-10">Kontak</a>
+                @if (Route::has('login'))
+                    <div class="md:block">
+                        @auth
+                            <a href="{{ url('/admin') }}" class="font-semibold text-gray-50 hover:text-gray-300">Dashboard
+                                admin</a>
+                        @else
+                            <a href="{{ route('login') }}" class="font-semibold text-gray-50 hover:text-gray-300">Log in</a>
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}"
+                                    class="ml-4 font-semibold text-gray-50 hover:text-gray-300">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+            </nav>
+            @if (Route::has('login'))
+                <div class="hidden md:block">
+                    @auth
+                        <a href="{{ url('/admin') }}" class="font-semibold text-gray-50 hover:text-gray-300">Dashboard admin</a>
+                    @else
+                        <a href="{{ route('login') }}" class="font-semibold text-gray-50 hover:text-gray-300">Log in</a>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}"
+                                class="ml-4 font-semibold text-gray-50 hover:text-gray-300">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+
         </div>
-    </header>
+    </header> -->
     <!-- Hero Section -->
     <section class="bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-white">
         <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
@@ -67,7 +141,7 @@
                         Supplier</a>
                 </div>
             </div>
-            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 hidden md:block">
                 <img class="object-cover object-center rounded h-[500px] w-[600px]" alt="hero"
                     src="{{asset("./image/gedung.png")}}">
             </div>
@@ -178,9 +252,9 @@
     </section>
     <!-- Konsultasi Section -->
     <section id="kontak"
-        class="relative bg-[url(https://res.cloudinary.com/dojf4to3s/image/upload/v1718157516/image_20_ki016h.png)] bg-cover bg-center">
+        class="-z-10 relative bg-[url(https://res.cloudinary.com/dojf4to3s/image/upload/v1718157516/image_20_ki016h.png)] bg-cover bg-center">
         <div class="absolute inset-0 bg-black opacity-60"></div>
-        <div class="relative container mx-auto">
+        <div class="relative container mx-auto hidden md:block">
             <div class="absolute py-32 text-white">
                 <h1 class="text-5xl font-semibold">Butuh Konsultasi..?
                     <br>Silahkan kontak kami
@@ -262,6 +336,18 @@
             </span>
         </div>
     </footer>
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+
+    <script>
+        document.getElementById('navbar-toggler').addEventListener('click', function () {
+            var navbarCollapse = document.getElementById('navbar-collapse');
+            if (navbarCollapse.classList.contains('hidden')) {
+                navbarCollapse.classList.remove('hidden');
+            } else {
+                navbarCollapse.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 
 </html>

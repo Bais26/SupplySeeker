@@ -8,8 +8,8 @@
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
       rel="stylesheet"
     />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="build/css/tailwind.css" />
+    <link href="{{ asset('../css/app.css') }}" rel="stylesheet">
+        @vite(['resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.5.x/dist/component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
   </head>
@@ -29,7 +29,7 @@
 
         <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
         @include('layouts.header')
-        @include('layouts.navigation')
+        <!--   -->
           <!-- Main content -->
           <main>
           {{ $slot }}

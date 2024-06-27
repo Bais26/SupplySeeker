@@ -23,7 +23,7 @@
                       stroke="currentColor"
                     >
                       <path
-                      class="text-violet-500"
+                      class="text-green-500"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
@@ -56,7 +56,7 @@
                       stroke="currentColor"
                     >
                       <path
-                      class="text-violet-500
+                      class="text-green-500
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
