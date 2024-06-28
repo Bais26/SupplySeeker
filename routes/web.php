@@ -4,6 +4,7 @@
 use App\Http\Controllers\HitungController;
 use App\Http\Controllers\KriteriaController;
 // use App\Http\Controllers\nilaiController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlternativeController;
@@ -39,7 +40,7 @@ use App\Http\Controllers\AlternativeController;
     // Route::get('/home', function () {
     //   return redirect()->route('dashboard');  
     // });
-
+    Route::get('send-mail', [MailController::class, 'index']);
 
     require __DIR__ . '/auth.php';
 

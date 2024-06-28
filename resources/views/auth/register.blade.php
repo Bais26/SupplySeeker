@@ -2,7 +2,7 @@
     <div class="font-[sans-serif] bg-gradient-to-r from-purple-900 via-purple-700 to-purple-500 text-[#333]">
         <div class="min-h-screen flex fle-col items-center justify-center lg:p-6 p-4">
             <div class="grid md:grid-cols-2 items-center gap-10 max-w-6xl w-full">
-                <div class="hidden max-md:text-center">
+                <div class="hidden md:block max-md:text-center">
                     <a href="/" class="text-white flex items-center space-x-3 rtl:space-x-reverse">
                         <img class="h-10" src="{{asset('./image/logo.png')}}" alt="SupplierSeeker">
                         <span class="self-center text-2xl font-semibold whitespace-nowrap">SupplySeeker</span>
