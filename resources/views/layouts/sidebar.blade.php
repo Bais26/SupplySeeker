@@ -5,15 +5,8 @@
               <!-- Dashboards links -->
               <div x-data="{ isActive: true, open: true}" class="hover:bg-green-100 active:bg-green-100">
                 <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-                <a
-                  href="#"
-                  @click="$event.preventDefault(); open = !open"
-                  class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                  :class="{'bg-primary-100 dark:bg-primary': isActive || open}"
-                  role="button"
-                  aria-haspopup="true"
-                  :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                >
+                <div
+                  class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
                   <span aria-hidden="true">
                     <svg
                       class="w-5 h-5"
@@ -31,8 +24,8 @@
                       />
                     </svg>
                   </span>
-                  <span class="ml-2 text-sm"> Dashboards </span>
-                </a>
+                  <a href="/admin" class="ml-2 text-sm"> Dashboards </a>
+                </div>
               </div>
 
               <!-- Components links -->

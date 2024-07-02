@@ -40,7 +40,7 @@ use App\Http\Controllers\AlternativeController;
     // Route::get('/home', function () {
     //   return redirect()->route('dashboard');  
     // });
-    Route::get('send-mail', [MailController::class, 'index']);
+    Auth::routes(['verify'=>true]);
 
     require __DIR__ . '/auth.php';
 

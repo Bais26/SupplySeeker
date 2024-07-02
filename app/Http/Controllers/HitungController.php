@@ -9,70 +9,60 @@ use Illuminate\Http\Request;
 class HitungController extends Controller
 {
     public function hitungWP(Request $request)
-{
-    // Mendapatkan bobot dari kriteria
-    $kriteria = Kriteria::pluck('bobot_kriteria', 'id')->all();
+    {
+        // Mendapatkan bobot dari kriteria
+        $kriterias = Kriteria::orderby('id', 'asc')->get();
 
-    // Mendapatkan semua alternatif
-    $alternatifs = alternative::orderBy('nama_supplier', 'asc')->get();
+        // Mendapatkan semua alternatif
+        $alternatifs = Alternative::orderBy('nama_supplier', 'asc')->get();
 
-    // Mendapatkan nilai normalisasi dari semua kriteria untuk setiap alternatif
-   $alternatifValues = [];
-
-foreach ($alternatifs as $alternatif) {
-    $alternatifValues[$alternatif->id] = [
-        'C1' => $alternatif->maxC1 - $alternatif->minC1 != 0 ? 
-                ($alternatif->C1 - $alternatif->minC1) / ($alternatif->maxC1 - $alternatif->minC1) : 
-                0,
-
-        'C2' => $alternatif->maxC2 - $alternatif->minC2 != 0 ? 
-                ($alternatif->C2 - $alternatif->minC2) / ($alternatif->maxC2 - $alternatif->minC2) : 
-                0,
-
-        'C3' => $alternatif->maxC3 - $alternatif->minC3 != 0 ? 
-                ($alternatif->C3 - $alternatif->minC3) / ($alternatif->maxC3 - $alternatif->minC3) : 
-                0,
-
-        'C4' => $alternatif->maxC4 - $alternatif->minC4 != 0 ? 
-                ($alternatif->C4 - $alternatif->minC4) / ($alternatif->maxC4 - $alternatif->minC4) : 
-                0,
-
-        'C5' => $alternatif->maxC5 - $alternatif->minC5 != 0 ? 
-                ($alternatif->C5 - $alternatif->minC5) / ($alternatif->maxC5 - $alternatif->minC5) : 
-                0,
-    ];
-}
-
-
-    // Mendapatkan nilai WP untuk setiap alternatif
-    $wpValues = [];
-    foreach ($alternatifs as $alternatif) {
-        $wp = 1;
-        foreach ($kriteria as $kriteriaId => $bobot) {
-            $wp *= pow($alternatifValues[$alternatif->id]['C' . $kriteriaId], $bobot);
+        // Mendapatkan nilai minimal dan maksimal untuk setiap kriteria
+        $minMaxValues = [];
+        foreach ($kriterias as $kriteria) {
+            $kode = $kriteria->kode_kriteria;
+            $minMaxValues[$kode]['min'] = Alternative::min($kode);
+            $minMaxValues[$kode]['max'] = Alternative::max($kode);
         }
-        $wpValues[$alternatif->id] = $wp;
+
+        // Mendapatkan nilai normalisasi dari semua kriteria untuk setiap alternatif
+        $alternatifValues = [];
+        foreach ($alternatifs as $alternatif) {
+            foreach ($kriterias as $kriteria) {
+                $kode = $kriteria->kode_kriteria;
+                $type = $kriteria->type;
+                $min = $minMaxValues[$kode]['min'];
+                $max = $minMaxValues[$kode]['max'];
+
+                if ($type == 'benefit') {
+                    $alternatifValues[$alternatif->id][$kode] = $max != 0 ? $alternatif->$kode / $max : 0;
+                } else {
+                    $alternatifValues[$alternatif->id][$kode] = $min != 0 ? $min / $alternatif->$kode : 0;
+                }
+            }
+        }
+
+        // Normalisasi bobot kriteria
+        $totalBobot = $kriterias->sum('bobot_kriteria');
+        $normalizedWeights = $kriterias->mapWithKeys(function ($item) use ($totalBobot) {
+            return [$item->kode_kriteria => $item->bobot_kriteria / $totalBobot];
+        });
+
+        // Mendapatkan nilai WP untuk setiap alternatif
+        $wpValues = [];
+        foreach ($alternatifs as $alternatif) {
+            $wp = 1;
+            foreach ($kriterias as $kriteria) {
+                $kode = $kriteria->kode_kriteria;
+                $wp *= pow($alternatifValues[$alternatif->id][$kode], $normalizedWeights[$kode]);
+            }
+            $wpValues[$alternatif->id] = $wp;
+        }
+
+        // Mengurutkan alternatif berdasarkan nilai WP tertinggi ke terendah
+        arsort($wpValues);
+
+        // Kirim data ke view
+        return view('admin.hitung', compact('wpValues', 'alternatifs', 'kriterias', 'alternatifValues'));
     }
-
-    // Mengurutkan alternatif berdasarkan nilai WP tertinggi ke terendah
-    arsort($wpValues);
-
-    // Ambil data kriteria minimal dan maksimal untuk digunakan di view
-    $minMaxValues = [
-        'C1min' => alternative::min('C1'),
-        'C1max' => alternative::max('C1'),
-        'C2min' => alternative::min('C2'),
-        'C2max' => alternative::max('C2'),
-        'C3min' => alternative::min('C3'),
-        'C3max' => alternative::max('C3'),
-        'C4min' => alternative::min('C4'),
-        'C4max' => alternative::max('C4'),
-        'C5min' => alternative::min('C5'),
-        'C5max' => alternative::max('C5'),
-    ];
-
-    // Kirim data ke view
-    return view('admin.hitung', compact('wpValues', 'alternatifs', 'minMaxValues'));
-}
 
 }
