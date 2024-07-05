@@ -6,6 +6,22 @@
                 Tambah Kriteria
             </a>
         </div>
+        @if (session('success'))
+                <div class="bg-green-100 px-4 py-3 rounded relative mb-4" role="alert">
+                    <strong class="font-bold">Success alert! Changed successfully</strong>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    <strong class="font-bold">Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
         <div class="mt-6 bg-white rounded-lg shadow-md overflow-y-auto">
             <table class="w-full min-w-full table-auto">

@@ -35,7 +35,7 @@ use App\Http\Controllers\AlternativeController;
     Route::resource('alternative', AlternativeController::class);
     Route::resource('kriteria', KriteriaController::class);
     // Route::resource('nilai', nilaiController::class);
-    Route::get('/hitung', [HitungController::class, 'hitungWP'])->name('hitung');
+    Route::get('/hitung', [HitungController::class, 'hitungSAW'])->name('hitung');
 
     // Route::get('/home', function () {
     //   return redirect()->route('dashboard');  

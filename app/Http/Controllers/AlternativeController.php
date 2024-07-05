@@ -83,7 +83,12 @@ class AlternativeController extends Controller
             'C4' => 'required',
             'C5' => 'required',
         ]);
-        $alternatives = alternative::create([
+    
+        // Temukan data alternatif berdasarkan ID
+        $alternatives = Alternative::findOrFail($id);
+    
+        // Update data alternatif
+        $alternatives->update([
             'nama_supplier' => $request->nama_supplier,
             'C1' => $request->C1,
             'C2' => $request->C2,
@@ -91,10 +96,11 @@ class AlternativeController extends Controller
             'C4' => $request->C4,
             'C5' => $request->C5,
         ]);
-        alternative::whereId($id)->update($alternatives);
-
-        return redirect()->back()->with('success','Data berhasil disimpan');
+    
+        // Redirect dengan pesan sukses
+        return redirect()->route('alternative.index')->with('success', 'Data berhasil diupdate');
     }
+    
 
     /**
      * Remove the specified resource from storage.

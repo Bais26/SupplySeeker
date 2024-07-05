@@ -125,7 +125,7 @@
                       stroke="currentColor"
                     >
                       <path
-                      class="text-green-500"
+                      class=""
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"

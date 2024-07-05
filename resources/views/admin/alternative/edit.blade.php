@@ -1,33 +1,58 @@
-<!-- resources/views/page/alternative-edit.blade.php -->
-
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Alternatif') }}
-        </h2>
-    </x-slot>
+    <div class="container mx-auto p-5 min-h-screen bg-gray-100">
+        <h1 class="text-2xl mb-4 font-semibold text-gray-800">Edit Alternatif</h1>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    <form action="{{ route('alternative.update', $alternative->id) }}" method="POST" class="space-y-4">
-                        @csrf
-                        @method('PUT')
-
-                        <div>
-                            <label for="nama_supplier" class="block font-medium text-sm text-gray-700">Nama Supplier</label>
-                            <input type="text" name="nama_supplier" id="nama_supplier" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ $alternative->nama_supplier }}" required />
-                        </div>
-
-                        <div class="flex justify-end">
-                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Perbarui Alternatif
-                            </button>
-                        </div>
-                    </form>
-                </div>
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong class="font-bold">Whoops!</strong>
+                <span class="block sm:inline">There were some problems with your input.</span>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-        </div>
+        @endif
+
+        <form action="{{ route('alternative.update', $alternatives->id) }}" method="POST" class="bg-white p-6 rounded-lg shadow-md">
+            @csrf
+            @method('PUT')
+
+            <div class="mb-4">
+                <label for="nama_supplier" class="block text-gray-700 text-sm font-bold mb-2">Nama Supplier:</label>
+                <input type="text" name="nama_supplier" id="nama_supplier" value="{{ $alternatives->nama_supplier }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="mb-4">
+                <label for="C1" class="block text-gray-700 text-sm font-bold mb-2">C1:</label>
+                <input type="text" name="C1" id="C1" value="{{ $alternatives->C1 }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="mb-4">
+                <label for="C2" class="block text-gray-700 text-sm font-bold mb-2">C2:</label>
+                <input type="text" name="C2" id="C2" value="{{ $alternatives->C2 }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="mb-4">
+                <label for="C3" class="block text-gray-700 text-sm font-bold mb-2">C3:</label>
+                <input type="text" name="C3" id="C3" value="{{ $alternatives->C3 }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="mb-4">
+                <label for="C4" class="block text-gray-700 text-sm font-bold mb-2">C4:</label>
+                <input type="text" name="C4" id="C4" value="{{ $alternatives->C4 }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="mb-4">
+                <label for="C5" class="block text-gray-700 text-sm font-bold mb-2">C5:</label>
+                <input type="text" name="C5" id="C5" value="{{ $alternatives->C5 }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Update
+                </button>
+            </div>
+        </form>
     </div>
 </x-app-layout>

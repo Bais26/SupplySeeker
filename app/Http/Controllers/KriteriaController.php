@@ -74,19 +74,23 @@ class KriteriaController extends Controller
         $this->validate($request, [
             'kode_kriteria' => 'required|string',
             'nama_kriteria' => 'required|string',
-            'bobot_kriteria' => 'required|integer',
+            'bobot_kriteria' => 'required|numeric',
             'type' => 'required|string',
         ]);
-        $kriteria = Kriteria::create([
+    
+        $kriteria = Kriteria::findOrFail($id);
+        $kriteria->update([
             'kode_kriteria' => $request->kode_kriteria,
             'nama_kriteria' => $request->nama_kriteria,
             'bobot_kriteria' => $request->bobot_kriteria,
             'type' => $request->type,
         ]);
-        Kriteria::whereId($id)->update($kriteria);
+    
         // Redirect dengan pesan sukses
-        return redirect()->back()->with('success', 'Data kriteria berhasil ditambahkan');
+        return redirect()->route('kriteria.index')->with('success', 'Data kriteria berhasil diupdate');
     }
+    
+    
 
     /**
      * Remove the specified resource from storage.

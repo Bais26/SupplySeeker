@@ -6,6 +6,40 @@
     </x-slot>
 
     <div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
+            <!-- Tabel Utama -->
+            <div class="bg-white mb-6 shadow-md overflow-hidden sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200 overflow-x-auto">
+                    <table class="w-full table-auto">
+                        <thead class="bg-gray-50 border-b-2 border-gray-200">
+                            <tr>
+                                <th class="p-4 text-sm font-semibold tracking-wide text-center">No</th>
+                                <th class="p-4 text-sm font-semibold tracking-wide text-center">Nama Supplier</th>
+                                @foreach ($kriterias as $kriteria)
+                                    <th class="p-4 text-sm font-semibold tracking-wide text-center">
+                                        {{ $kriteria->nama_kriteria }}</th>
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1
+                            @endphp
+                            @foreach ($alternatifs as $key => $item)
+                                <tr x-data="{ showModal: false }">
+                                    <td class="border text-center px-4 py-2">{{ $no++ }}</td>
+                                    <td class="border text-center px-4 py-2">{{ $item->nama_supplier }}</td>
+                                    <td class="border text-center px-4 py-2">{{ $item->C1 }}</td>
+                                    <td class="border text-center px-4 py-2">{{ $item->C2 }}</td>
+                                    <td class="border text-center px-4 py-2">{{ $item->C3 }}</td>
+                                    <td class="border text-center px-4 py-2">{{ $item->C4 }}</td>
+                                    <td class="border text-center px-4 py-2">{{ $item->C5 }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Bobot -->
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-6">

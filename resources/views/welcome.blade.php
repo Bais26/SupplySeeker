@@ -14,104 +14,80 @@
     <!-- Styles -->
     <!-- Scripts -->
     <link href="{{ asset('../css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('./css/app.css') }}" rel="stylesheet">
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     @vite(['resources/js/app.js'])
+    <style>
+        .bg-image {
+            background-image: url('/image/BG.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 90%;
+            height: 800px;
+        }
+    </style>
 </head>
 
 <body class="font-sans antialiased">
-<nav class="bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-white sticky top-0">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-    <img class="h-10" src="{{asset('./image/logo.png')}}" alt="SupplierSeeker">
-        <span class="self-center text-2xl font-semibold whitespace-nowrap">SupplySeeker</span>
-    </a>
-    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden focus:outline-none focus:ring-1 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-        </svg>
-    </button>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
-        <li>
-          <a href="/" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0" aria-current="page">Home</a>
-        </li>
-        <li>
-          <a href="#layanan" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Layanan</a>
-        </li>
-        <li>
-          <a href="#fitur" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Fitur</a>
-        </li>
-        <li>
-          <a href="#kontak" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Kontak</a>
-        </li>
-        @if (Route::has('login'))
-                    <div class="md:hidden block">
-                        @auth
-                            <a href="{{ url('/admin') }}" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0 font-bold text-center border">Dashboard
-                                admin</a>
-                        @else
-                            <a href="{{ route('login') }}" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Log in</a>
-                            <a href="{{ route('register') }}" class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">register</a>
-                        @endauth
-                    </div>
-                @endif
-      </ul>
-      @if (Route::has('login'))
-                    <div class="hidden md:block">
-                        @auth
-                            <a href="{{ url('/admin') }}" class="font-semibold text-gray-50 hover:text-gray-300">Dashboard
-                                admin</a>
-                        @else
-                            <a href="{{ route('login') }}" class="font-semibold text-gray-50 hover:text-gray-300">Log in</a>
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}"
-                                    class="ml-4 font-semibold text-gray-50 hover:text-gray-300">Register</a>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
-    </div>
-  </div>
-</nav>
-
-    <!-- Navbar Section
-    <header class="body-font bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-white sticky top-0">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-            <div class="flex items-center justify-between w-full md:w-auto">
+    <nav class="z-10 bg-aksen text-white sticky top-0 shadow-md">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img class="h-10" src="{{asset('./image/logo.png')}}" alt="SupplierSeeker">
-                <div class="flex items-center mr-10">
-                    <a href="#" class="ml-3 text-2xl font-bold">SupplySeeker</a>
-                </div>
-                <button id="navbar-toggler" class="text-white md:hidden">
-                    <i class="bi bi-list text-3xl"></i>
-                </button>
-
-            </div>
-            <nav id="navbar-collapse"
-                class="hidden md:flex md:flex-row md:ml-auto md:mr-auto ">
-                <a href="#" class="hover:text-gray-300 md:mr-10 ">Beranda</a>
-                <a href="#layanan" class="hover:text-gray-300 md:mr-10">Layanan</a>
-                <a href="#fitur" class="hover:text-gray-300 md:mr-10">Fitur</a>
-                <a href="#kontak" class="hover:text-gray-300 md:mr-10">Kontak</a>
-                @if (Route::has('login'))
-                    <div class="md:block">
-                        @auth
-                            <a href="{{ url('/admin') }}" class="font-semibold text-gray-50 hover:text-gray-300">Dashboard
-                                admin</a>
-                        @else
-                            <a href="{{ route('login') }}" class="font-semibold text-gray-50 hover:text-gray-300">Log in</a>
-                            @if (Route::has('register'))
+                <span class="self-center text-2xl font-semibold whitespace-nowrap">SupplySeeker</span>
+            </a>
+            <button data-collapse-toggle="navbar-default" type="button"
+                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden focus:outline-none focus:ring-1 focus:ring-gray-200"
+                aria-controls="navbar-default" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M1 1h15M1 7h15M1 13h15" />
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul
+                    class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
+                    <li>
+                        <a href="/"
+                            class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="#layanan"
+                            class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Layanan</a>
+                    </li>
+                    <li>
+                        <a href="#fitur"
+                            class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Fitur</a>
+                    </li>
+                    <li>
+                        <a href="#kontak"
+                            class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Kontak</a>
+                    </li>
+                    @if (Route::has('login'))
+                        <div class="md:hidden block">
+                            @auth
+                                <a href="{{ url('/admin') }}"
+                                    class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0 font-bold text-center border">Dashboard
+                                    admin</a>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">Log
+                                    in</a>
                                 <a href="{{ route('register') }}"
-                                    class="ml-4 font-semibold text-gray-50 hover:text-gray-300">Register</a>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
-            </nav>
+                                    class="block py-2 px-3 rounded hover: md:hover:bg-transparent md:border-0 md:hover:text-gray-300 md:p-0">register</a>
+                            @endauth
+                        </div>
+                    @endif
+                </ul>
+            </div>
             @if (Route::has('login'))
                 <div class="hidden md:block">
                     @auth
-                        <a href="{{ url('/admin') }}" class="font-semibold text-gray-50 hover:text-gray-300">Dashboard admin</a>
+                        <a href="{{ url('/admin') }}" class="font-semibold text-gray-50 hover:text-gray-300">Dashboard
+                            admin</a>
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-50 hover:text-gray-300">Log in</a>
                         @if (Route::has('register'))
@@ -121,54 +97,49 @@
                     @endauth
                 </div>
             @endif
-
         </div>
-    </header> -->
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-white">
-        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-            <div
-                class="lg:flex-grow font md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-semibold">Memilih yang terbaik untuk Bisnis Anda
-                </h1>
-                <p class="mb-8 leading-relaxed">SPK ini Menentukan Supplier Terbaik untuk Bisnis Anda, dengan Sistem
-                    ini, Anda dapat
-                    mengevaluasi dan memilih supplier terbaik berdasarkan kriteria yang relevan, dan memastikan kualitas
-                    dan efisien dalam memilih supplier</p>
+    </nav>
+    <div class="bg-image flex items-center justify-center">
+        <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="2000"
+            class="container mx-auto px-5 py-24 md:flex md:flex-row justify-center text-center md:items-center md:justify-center">
+            <div class="md:w-1/2 md:pr-16 flex flex-col items-center text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-8">Memilih yang Terbaik untuk Bisnis Anda</h1>
+                <p class="mb-8 text-white leading-relaxed text-xl md:text-xl">SPK ini Menentukan Supplier Terbaik untuk
+                    Bisnis Anda, dengan Sistem ini, Anda dapat mengevaluasi dan memilih supplier terbaik berdasarkan
+                    kriteria yang relevan, dan memastikan kualitas dan efisiensi dalam memilih supplier.</p>
                 <div class="flex justify-center">
                     <a href="/admin"
-                        class="mt-6 inline-block bg-white text-blue-bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-[#333] font-semibold py-2 px-4 rounded">Tentukan
+                        class="bg-white text-[#333] font-semibold py-3 px-6 rounded-lg hover:bg-primary transition duration-300">Tentukan
                         Supplier</a>
                 </div>
             </div>
-            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 hidden md:block">
-                <img class="object-cover object-center rounded h-[500px] w-[600px]" alt="hero"
-                    src="{{asset("./image/gedung.png")}}">
-            </div>
         </div>
-    </section>
+    </div>
+
     <!-- Layanan Kami Section -->
-    <section id="layanan" class="py-32 bg-purple-100">
+    <section id="layanan" class="py-32 bg-background">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold">Layanan Kami</h2>
-            <p class="mt-2">SupplySeeker hadir untuk menjadi solusi bagi kamu</p>
+            <div data-aos="fade-up" data-aos-duration="2000">
+                <h2 class="text-3xl font-bold">Layanan Kami</h2>
+                <p class="mt-2">SupplySeeker hadir untuk menjadi solusi bagi kamu</p>
+            </div>
             <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-12 rounded-lg shadow-lg">
-                    <i class="bi bi-person-check text-violet-500" style="font-size: 2rem;"></i>
+                <div class="p-12" data-aos="fade-up" data-aos-duration="2000">
+                    <i class="bi bi-person-check text-second" style="font-size: 2rem;"></i>
                     <h3 class="text-xl font-bold">Pemilihan Supplier</h3>
                     <p class="mt-4">Kami menyediakan peringkat untuk setiap supplier berdasarkan kriteria yang telah
                         diterapkan, sistem ini membantu Anda untuk memilih suuplier terbaik yang sesuai dengan kebutuhan
                         Anda</p>
                 </div>
-                <div class="bg-white p-12 rounded-lg shadow-lg">
-                    <i class="bi bi-bar-chart-line text-violet-500" style="font-size: 2rem;"></i>
+                <div class="p-12" data-aos="fade-up" data-aos-duration="2000">
+                    <i class="bi bi-bar-chart-line text-second" style="font-size: 2rem;"></i>
                     <h3 class="text-xl font-bold">Benchmarking Supplier</h3>
                     <p class="mt-4">Kami menyediakan alat untuk membandingkan supplier Anda dengan Supplier lain di
                         industri yang sama, ini membantu anda untuk menentukan supplier yang tepat tanpa memakan waktu
                         yang lama untuk membandingkan</p>
                 </div>
-                <div class="bg-white p-12 rounded-lg shadow-lg">
-                    <i class="bi bi-lightbulb text-violet-500" style="font-size: 2rem;"></i>
+                <div class="p-12" data-aos="fade-up" data-aos-duration="2000">
+                    <i class="bi bi-lightbulb text-second" style="font-size: 2rem;"></i>
                     <h3 class="text-xl font-bold">Rekomendasi Optimal</h3>
                     <p class="mt-4">Berdasarkan data yang dikumpulkan dan dianalis, sistem kami memberikan rekomendasi
                         supplier terbaik sesuai apa yang anda butuhkan</p>
@@ -177,17 +148,17 @@
         </div>
     </section>
 
+
     <!-- Fitur Section -->
-    <section id="fitur" class="py-12 bg-purple-100">
+    <!-- <section id="fitur" class="py-12 bg-background">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl font-bold">Fitur di SupplySeeker</h2>
             <p class="mt-2">Sistem Pendukung Keputusan kami menyediakan berbagai fitur untuk membantu Anda membuat
                 keputusan terbaik.</p>
             <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Data Kriteria -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="text-violet-500 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none"
+                        <svg xmlns="vhttp://www.w3.org/2000/sg" class="h-12 w-12 mx-auto" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
@@ -196,7 +167,7 @@
                     <p class="mt-4">Mengelola dan menampilkan data kriteria yang relevan dengan keputusan yang akan
                         diambil.</p>
                 </div>
-                <!-- Data Alternatif -->
+
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="text-violet-500 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none"
@@ -209,7 +180,7 @@
                     <p class="mt-4">Menyediakan data alternatif yang akan dibandingkan berdasarkan kriteria yang telah
                         ditentukan.</p>
                 </div>
-                <!-- Sub Kriteria -->
+                
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="text-violet-500 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none"
@@ -221,7 +192,6 @@
                     <h3 class="text-xl font-bold">Sub Kriteria</h3>
                     <p class="mt-4">Mengelola dan menampilkan data sub kriteria untuk detail yang lebih mendalam.</p>
                 </div>
-                <!-- Data Penilaian -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="text-violet-500 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none"
@@ -234,7 +204,6 @@
                     <p class="mt-4">Menyediakan data penilaian untuk setiap alternatif berdasarkan kriteria yang telah
                         ditentukan.</p>
                 </div>
-                <!-- Data Perhitungan Akhir -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="text-violet-500 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none"
@@ -249,6 +218,142 @@
                 </div>
             </div>
         </div>
+    </section> -->
+    <!-- <section class="bg-primary body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-20">
+    <h2 class="text-white text-3xl font-bold">Fitur di SupplySeeker</h2>
+            <p class="mt-2 text-white">Sistem Pendukung Keputusan kami menyediakan berbagai fitur untuk membantu Anda membuat
+                keputusan terbaik.</p>
+    </div>
+    <div class="flex flex-wrap -m-4">
+      <div class="p-4 md:w-1/2 ">
+        <div class="flex rounded-lg h-full p-8 bg-card flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full text-aksen flex-shrink-0">
+            <svg xmlns="vhttp://www.w3.org/2000/sg" class="h-12 w-12 mx-auto" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Data Kriteria</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/2">
+        <div class="flex rounded-lg h-full p-8 bg-card flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full text-aksen flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Data Kriteria</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/2">
+        <div class="flex rounded-lg h-full p-8 bg-card flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full text-aksen flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Sub Kriteria</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/2 ">
+        <div class="flex rounded-lg h-full p-8 bg-card flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full text-aksen flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>    
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Perhitungan</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+    <section class="text-gray-600 bg-primary body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap w-full mb-20">
+                <div class="flex flex-col text-center w-full mb-20" data-aos="fade-up" data-aos-duration="2000">
+                    <h2 class="text-aksen text-3xl font-bold">Fitur di SupplySeeker</h2>
+                    <p class="mt-2 text-aksen">Sistem Pendukung Keputusan kami menyediakan berbagai fitur untuk membantu
+                        Anda membuat
+                        keputusan terbaik.</p>
+                </div>
+                <div class="flex flex-wrap md:flex-nowrap -m-4">
+                    <div class="md:w-1/2 p-4 " data-aos="fade-right"
+                        data-aos-duration="1000">
+                        <div class="bg-gray-100 rounded-lg">
+                            <img class="h-44 rounded w-full object-cover object-center mb-2"
+                                src="https://dummyimage.com/720x400" alt="content">
+                            <div class="p-6">
+                                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Data Kriteria</h2>
+                                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit
+                                    waistcoat.
+                                    Distillery hexagon disrupt edison bulbche.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-4" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="bg-gray-100 rounded-lg">
+                            <img class="h-44 rounded w-full object-cover object-center mb-2"
+                                src="https://dummyimage.com/721x401" alt="content">
+                            <div class="p-6">
+                                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Data Alternatif</h2>
+                                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit
+                                    waistcoat.
+                                    Distillery hexagon disrupt edison bulbche.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-4" data-aos="fade-down" data-aos-duration="1000">
+                        <div class="bg-gray-100 rounded-lg">
+                            <img class="h-44 rounded w-full object-cover object-center mb-2"
+                                src="https://dummyimage.com/722x402" alt="content">
+                            <div class="p-6">
+                                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Sub Kriteria</h2>
+                                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit
+                                    waistcoat.
+                                    Distillery hexagon disrupt edison bulbche.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-4" data-aos="fade-left"
+                        data-aos-duration="1000">
+                        <div class="bg-gray-100 rounded-lg">
+                            <img class="h-44 rounded w-full object-cover object-center mb-2"
+                                src="https://dummyimage.com/723x403" alt="content">
+                            <div class="p-6">
+                                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Data Perhitungan</h2>
+                                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit
+                                    waistcoat.
+                                    Distillery hexagon disrupt edison bulbche.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </section>
     <!-- Konsultasi Section -->
     <section id="kontak"
@@ -299,7 +404,7 @@
     </section>
 
     <!-- footer -->
-    <footer class="body-font bg-gradient-to-r from-purple-800 via-purple-700 to-purple-500 text-[#333]">
+    <footer class="body-font bg-aksen text-[#333]">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
                 <img class="h-10 w-auto" src="{{asset("./image/logo.png")}}" alt="SupplierSeeker">
@@ -311,20 +416,20 @@
                     target="_blank">@baskara</a>
             </p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-                <a class="text-white">
+                <a href="https://www.facebook.com/bais.yufan.1" class="text-white">
                     <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         class="w-5 h-5" viewBox="0 0 24 24">
                         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                     </svg>
                 </a>
-                <a class="ml-3 text-white">
+                <a href="https://www.instagram.com/hi_basss/" class="ml-3 text-white">
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
                         <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                     </svg>
                 </a>
-                <a class="ml-3 text-white">
+                <a href="https://www.linkedin.com/in/bais-yufan-352057291/" class="ml-3 text-white">
                     <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
                         <path stroke="none"
@@ -347,6 +452,11 @@
                 navbarCollapse.classList.add('hidden');
             }
         });
+    </script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 

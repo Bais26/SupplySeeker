@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="font-[sans-serif] bg-gradient-to-r from-purple-900 via-purple-700 to-purple-500 text-[#333]">
+    <div class="font-[sans-serif] bg-card text-[#333]">
         <div class="min-h-screen flex fle-col items-center justify-center lg:p-6 p-4">
             <div class="grid md:grid-cols-2 items-center gap-10 max-w-6xl w-full">
                 <div class="hidden md:block max-md:text-center">
@@ -49,15 +49,15 @@
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
                     <div class="text-xs text-right">
-                        <p class="text-blue-600">
+                        <p class="text-black">
                             Sudah Punya Akun?
-                            <a href="{{ route('login') }}" class="text-blue-600 font-semibold underline ml-1">Login
+                            <a href="{{ route('login') }}" class="text-black font-semibold underline ml-1">Login
                                 Sekarang</a>
                         </p>
                     </div>
                     <div class="!mt-10">
                         <button type="submit"
-                            class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-violet-500 hover:bg-violet-700 focus:outline-none">
+                            class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-aksen hover:bg-card focus:outline-none">
                             Sign Up
                         </button>
                     </div>

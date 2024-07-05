@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="font-[sans-serif] bg-gradient-to-r from-purple-900 via-purple-700 to-purple-500 text-[#333]">
+    <div class="font-[sans-serif] bg-card text-[#333]">
         <div class="min-h-screen flex fle-col items-center justify-center lg:p-6 p-4">
             <div class="grid md:grid-cols-2 items-center gap-10 max-w-6xl w-full">
                 <div class="max-md:text-center hidden md:block">
@@ -34,19 +34,19 @@
                     </div>
                     <div class="text-xs text-right">
                         @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-blue-600 hover:underline">
+                            <a href="{{ route('password.request') }}" class="text-black hover:underline">
                                 Forgot your password?
                             </a>
                         @endif
-                        <p class="text-blue-600 mt-4">
+                        <p class="text-black mt-4">
                             Tidak Punya Akun?
                             <a href="{{ route('register') }}"
-                                class="text-blue-600 mt-4 font-semibold underline ml-1">Daftar Sekarang</a>
+                                class="text-black mt-4 font-semibold underline ml-1">Daftar Sekarang</a>
                         </p>
                     </div>
                     <div class="!mt-4">
                         <button type="submit"
-                            class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-violet-500 hover:bg-violet-700 focus:outline-none">
+                            class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-aksen hover:bg-card focus:outline-none">
                             Log in
                         </button>
 

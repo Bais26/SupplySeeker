@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class HitungController extends Controller
 {
-    public function hitungWP(Request $request)
+    public function hitungSAW(Request $request)
     {
         // Mendapatkan bobot dari kriteria
         $kriterias = Kriteria::orderby('id', 'asc')->get();
@@ -33,10 +33,10 @@ class HitungController extends Controller
                 $min = $minMaxValues[$kode]['min'];
                 $max = $minMaxValues[$kode]['max'];
 
-                if ($type == 'benefit') {
+                if ($type == 'Benefit') {
                     $alternatifValues[$alternatif->id][$kode] = $max != 0 ? $alternatif->$kode / $max : 0;
                 } else {
-                    $alternatifValues[$alternatif->id][$kode] = $min != 0 ? $min / $alternatif->$kode : 0;
+                    $alternatifValues[$alternatif->id][$kode] = $min != 0 ? $alternatif->$kode / $min : 0;
                 }
             }
         }
@@ -64,5 +64,6 @@ class HitungController extends Controller
         // Kirim data ke view
         return view('admin.hitung', compact('wpValues', 'alternatifs', 'kriterias', 'alternatifValues'));
     }
+
 
 }
