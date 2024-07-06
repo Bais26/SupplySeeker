@@ -23,6 +23,6 @@ class alternative extends Model
 
     public function kriteria(){
         return $this->belongsTo(Kriteria::class, 'kriteria_id', 'id');
-    }
+    }   
 
 }

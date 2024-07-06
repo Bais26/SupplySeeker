@@ -91,22 +91,22 @@
                 </div>
             </div>
 
-            <!-- Hasil Perhitungan WP -->
+            <!-- Hasil Perhitungan SAW -->
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200 overflow-y-auto">
-                    <h3 class="text-xl font-semibold text-gray-800 leading-tight mb-4">Hasil Perhitungan WP</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 leading-tight mb-4">Hasil Perhitungan SAW</h3>
                     <table class="min-w-full bg-white">
                         <thead>
                             <tr>
                                 <th class="py-2">Nama Supplier</th>
-                                <th class="py-2">Nilai WP</th>
+                                <th class="py-2">Nilai SAW</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($wpValues as $id => $nilaiWP)
+                            @foreach ($ValueSAW as $id => $nilaiSAW)
                                 <tr>
                                     <td class="py-2 text-center">{{ $alternatifs->find($id)->nama_supplier }}</td>
-                                    <td class="py-2 text-center">{{ $nilaiWP }}</td>
+                                    <td class="py-2 text-center">{{ $nilaiSAW }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

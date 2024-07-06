@@ -78,7 +78,7 @@
                 <div
                   class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary" >
                   <i class="bi bi-person-gear"></i>
-                  <a href="/admin" class="ml-2 text-sm"> Profile </a>
+                  <a href="/profile" class="ml-2 text-sm"> Profile </a>
                 </div>
               </div>
               <div x-data="{ isActive: true, open: true }" class="hover:bg-primary active:bg-green-100">

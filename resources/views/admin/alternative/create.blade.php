@@ -34,31 +34,6 @@
                             <input type="text" name="nama_supplier" id="nama_supplier"
                                 class="form-input rounded-md shadow-sm mt-1 block w-full" required />
                         </div>
-                        <!-- <div>
-                            <label for="C1" class="block font-medium text-sm text-gray-700">C1</label>
-                            <input type="number" name="C1" id="C1"
-                                class="form-input rounded-md shadow-sm mt-1 block w-full" required />
-                        </div>
-                        <div>
-                            <label for="C2" class="block font-medium text-sm text-gray-700">C2</label>
-                            <input type="number" name="C2" id="C2"
-                                class="form-input rounded-md shadow-sm mt-1 block w-full" required />
-                        </div>
-                        <div>
-                            <label for="C3" class="block font-medium text-sm text-gray-700">C3</label>
-                            <input type="number" name="C3" id="C3"
-                                class="form-input rounded-md shadow-sm mt-1 block w-full" required />
-                        </div>
-                        <div>
-                            <label for="C4" class="block font-medium text-sm text-gray-700">C4</label>
-                            <input type="number" name="C4" id="C4"
-                                class="form-input rounded-md shadow-sm mt-1 block w-full" required />
-                        </div>
-                        <div>
-                            <label for="C5" class="block font-medium text-sm text-gray-700">C5</label>
-                            <input type="number" name="C5" id="C5"
-                                class="form-input rounded-md shadow-sm mt-1 block w-full" required />
-                        </div> -->
 
                         @foreach ($kriteria as $k)
                             <div>

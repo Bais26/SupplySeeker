@@ -48,21 +48,21 @@ class HitungController extends Controller
         });
 
         // Mendapatkan nilai WP untuk setiap alternatif
-        $wpValues = [];
+        $ValueSAW = [];
         foreach ($alternatifs as $alternatif) {
             $wp = 1;
             foreach ($kriterias as $kriteria) {
                 $kode = $kriteria->kode_kriteria;
                 $wp *= pow($alternatifValues[$alternatif->id][$kode], $normalizedWeights[$kode]);
             }
-            $wpValues[$alternatif->id] = $wp;
+            $ValueSAW[$alternatif->id] = $wp;
         }
 
         // Mengurutkan alternatif berdasarkan nilai WP tertinggi ke terendah
-        arsort($wpValues);
+        arsort($ValueSAW);
 
         // Kirim data ke view
-        return view('admin.hitung', compact('wpValues', 'alternatifs', 'kriterias', 'alternatifValues'));
+        return view('admin.hitung', compact('ValueSAW', 'alternatifs', 'kriterias', 'alternatifValues'));
     }
 
 
