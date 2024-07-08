@@ -306,36 +306,32 @@
                         data-aos-duration="1000">
                         <div class="bg-gray-100 rounded-lg">
                             <img class="h-44 rounded w-full object-cover object-center mb-2"
-                                src="https://dummyimage.com/720x400" alt="content">
+                                src="{{asset('./image/kriteria.png')}}" alt="content">
                             <div class="p-6">
                                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Data Kriteria</h2>
-                                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit
-                                    waistcoat.
-                                    Distillery hexagon disrupt edison bulbche.</p>
+                                <p class="leading-relaxed text-base">Mengelola dan menampilkan data kriteria yang relevan dengan keputusan yang akan
+                                diambil</p>
                             </div>
                         </div>
                     </div>
                     <div class="md:w-1/2 p-4" data-aos="fade-up" data-aos-duration="1000">
                         <div class="bg-gray-100 rounded-lg">
                             <img class="h-44 rounded w-full object-cover object-center mb-2"
-                                src="https://dummyimage.com/721x401" alt="content">
+                                src="{{asset('./image/alternatif.png')}}" alt="content">
                             <div class="p-6">
                                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Data Alternatif</h2>
-                                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit
-                                    waistcoat.
-                                    Distillery hexagon disrupt edison bulbche.</p>
+                                <p class="leading-relaxed text-base">Menyediakan data alternatif yang akan dibandingkan berdasarkan kriteria yang telah
+                                ditentukan.</p>
                             </div>
                         </div>
                     </div>
                     <div class="md:w-1/2 p-4" data-aos="fade-down" data-aos-duration="1000">
                         <div class="bg-gray-100 rounded-lg">
                             <img class="h-44 rounded w-full object-cover object-center mb-2"
-                                src="https://dummyimage.com/722x402" alt="content">
+                                src="{{asset('./image/dashboard.png')}}" alt="content">
                             <div class="p-6">
-                                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Sub Kriteria</h2>
-                                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit
-                                    waistcoat.
-                                    Distillery hexagon disrupt edison bulbche.</p>
+                                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">dashboard</h2>
+                                <p class="leading-relaxed text-base">Menampilkan tampilan utama untuk user dapat menambahkan kriteria, alternative, serta dapat melihat hasil hitungan </p>
                             </div>
                         </div>
                     </div>
@@ -343,12 +339,10 @@
                         data-aos-duration="1000">
                         <div class="bg-gray-100 rounded-lg">
                             <img class="h-44 rounded w-full object-cover object-center mb-2"
-                                src="https://dummyimage.com/723x403" alt="content">
+                                src="{{asset('./image/perhitungan.png')}}" alt="content">
                             <div class="p-6">
                                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Data Perhitungan</h2>
-                                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit
-                                    waistcoat.
-                                    Distillery hexagon disrupt edison bulbche.</p>
+                                <p class="leading-relaxed text-base">Mengelola dan menampilkan hasil perhitungan akhir untuk keputusan yang lebih baik.</p>
                             </div>
                         </div>
                     </div>

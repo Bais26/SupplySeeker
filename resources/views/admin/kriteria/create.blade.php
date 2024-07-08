@@ -15,7 +15,7 @@
                         <div>
                             <label for="kode_kriteria" class="block font-medium text-sm text-gray-700">Kode Kriteria</label>
                             <input type="text" name="kode_kriteria" id="kode_kriteria" class="form-input rounded-md shadow-sm mt-1 block w-full" required />
-                        </div>
+                            Kriteria      </div>
 
                         <div>
                             <label for="nama_kriteria" class="block font-medium text-sm text-gray-700">Nama Kriteria</label>

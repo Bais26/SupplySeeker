@@ -47,22 +47,34 @@ class HitungController extends Controller
             return [$item->kode_kriteria => $item->bobot_kriteria / $totalBobot];
         });
 
-        // Mendapatkan nilai WP untuk setiap alternatif
-        $ValueSAW = [];
-        foreach ($alternatifs as $alternatif) {
-            $wp = 1;
-            foreach ($kriterias as $kriteria) {
-                $kode = $kriteria->kode_kriteria;
-                $wp *= pow($alternatifValues[$alternatif->id][$kode], $normalizedWeights[$kode]);
-            }
-            $ValueSAW[$alternatif->id] = $wp;
-        }
+        // // Mendapatkan nilai WP untuk setiap alternatif
+        // $ValueSAW = [];
+        // foreach ($alternatifs as $alternatif) {
+        //     $wp = 1;
+        //     foreach ($kriterias as $kriteria) {
+        //         $kode = $kriteria->kode_kriteria;
+        //         $wp *= pow($alternatifValues[$alternatif->id][$kode], $normalizedWeights[$kode]);
+        //     }
+        //     $ValueSAW[$alternatif->id] = $wp;
+        // }
+        // Menghitung skor SAW untuk setiap alternatif
+$sawValues = [];
+foreach ($alternatifs as $alternatif) {
+    $saw = 0;
+    foreach ($kriterias as $kriteria) {
+        $kode = $kriteria->kode_kriteria;
+        $bobot = $kriteria->bobot_kriteria; // Menggunakan bobot langsung tanpa normalisasi
+        $saw += $alternatifValues[$alternatif->id][$kode] * $bobot;
+    }
+    $sawValues[$alternatif->id] = $saw;
+}
+
 
         // Mengurutkan alternatif berdasarkan nilai WP tertinggi ke terendah
-        arsort($ValueSAW);
+        arsort($sawValues);
 
         // Kirim data ke view
-        return view('admin.hitung', compact('ValueSAW', 'alternatifs', 'kriterias', 'alternatifValues'));
+        return view('admin.hitung', compact('sawValues', 'alternatifs', 'kriterias', 'alternatifValues'));
     }
 
 
