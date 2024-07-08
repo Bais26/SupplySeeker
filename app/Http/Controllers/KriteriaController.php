@@ -28,6 +28,7 @@ class KriteriaController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         // Validasi data
         $this->validate($request, [
             'kode_kriteria' => 'required|string',
