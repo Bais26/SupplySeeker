@@ -24,7 +24,7 @@
 
                         <div>
                             <label for="bobot_kriteria" class="block font-medium text-sm text-gray-700">Bobot Kriteria</label>
-                            <input type="number" name="bobot_kriteria" id="bobot_kriteria" class="form-input rounded-md shadow-sm mt-1 block w-full" required />
+                            <input type="number" step="any" name="bobot_kriteria" id="bobot_kriteria" class="form-input rounded-md shadow-sm mt-1 block w-full" required />
                         </div>
 
                         <div>
