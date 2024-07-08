@@ -32,7 +32,7 @@ class KriteriaController extends Controller
         $this->validate($request, [
             'kode_kriteria' => 'required|string',
             'nama_kriteria' => 'required|string',
-            'bobot_kriteria' => 'required|integer',
+            'bobot_kriteria' => 'required|numeric',
             'type' => 'required|string',
         ]);
         $kriteria = Kriteria::create([
