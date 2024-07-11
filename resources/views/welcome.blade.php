@@ -302,15 +302,15 @@
                         keputusan terbaik.</p>
                 </div>
                 <div class="flex flex-wrap md:flex-nowrap -m-4">
-                    <div class="md:w-1/2 p-4 " data-aos="fade-right"
-                        data-aos-duration="1000">
+                    <div class="md:w-1/2 p-4 " data-aos="fade-right" data-aos-duration="1000">
                         <div class="bg-gray-100 rounded-lg">
                             <img class="h-44 rounded w-full object-cover object-center mb-2"
                                 src="{{asset('./image/kriteria.png')}}" alt="content">
                             <div class="p-6">
                                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Data Kriteria</h2>
-                                <p class="leading-relaxed text-base">Mengelola dan menampilkan data kriteria yang relevan dengan keputusan yang akan
-                                diambil</p>
+                                <p class="leading-relaxed text-base">Mengelola dan menampilkan data kriteria yang
+                                    relevan dengan keputusan yang akan
+                                    diambil</p>
                             </div>
                         </div>
                     </div>
@@ -320,8 +320,9 @@
                                 src="{{asset('./image/alternatif.png')}}" alt="content">
                             <div class="p-6">
                                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Data Alternatif</h2>
-                                <p class="leading-relaxed text-base">Menyediakan data alternatif yang akan dibandingkan berdasarkan kriteria yang telah
-                                ditentukan.</p>
+                                <p class="leading-relaxed text-base">Menyediakan data alternatif yang akan dibandingkan
+                                    berdasarkan kriteria yang telah
+                                    ditentukan.</p>
                             </div>
                         </div>
                     </div>
@@ -331,18 +332,19 @@
                                 src="{{asset('./image/dashboard.png')}}" alt="content">
                             <div class="p-6">
                                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4">dashboard</h2>
-                                <p class="leading-relaxed text-base">Menampilkan tampilan utama untuk user dapat menambahkan kriteria, alternative, serta dapat melihat hasil hitungan </p>
+                                <p class="leading-relaxed text-base">Menampilkan tampilan utama untuk user dapat
+                                    menambahkan kriteria, alternative, serta dapat melihat hasil hitungan </p>
                             </div>
                         </div>
                     </div>
-                    <div class="md:w-1/2 p-4" data-aos="fade-left"
-                        data-aos-duration="1000">
+                    <div class="md:w-1/2 p-4" data-aos="fade-left" data-aos-duration="1000">
                         <div class="bg-gray-100 rounded-lg">
                             <img class="h-44 rounded w-full object-cover object-center mb-2"
                                 src="{{asset('./image/perhitungan.png')}}" alt="content">
                             <div class="p-6">
                                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Data Perhitungan</h2>
-                                <p class="leading-relaxed text-base">Mengelola dan menampilkan hasil perhitungan akhir untuk keputusan yang lebih baik.</p>
+                                <p class="leading-relaxed text-base">Mengelola dan menampilkan hasil perhitungan akhir
+                                    untuk keputusan yang lebih baik.</p>
                             </div>
                         </div>
                     </div>
@@ -410,7 +412,7 @@
                     target="_blank">@baskara</a>
             </p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-                <a href="https://www.facebook.com/bais.yufan.1" class="text-white">
+                <a href="https://www.facebook.com/bais.yufan.1" class="text-white" id="btnGoogle">
                     <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         class="w-5 h-5" viewBox="0 0 24 24">
                         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
@@ -452,6 +454,7 @@
     <script>
         AOS.init();
     </script>
+   
 </body>
 
 </html>

@@ -32,20 +32,21 @@ class HitungController extends Controller
                 $type = $kriteria->type;
                 $min = $minMaxValues[$kode]['min'];
                 $max = $minMaxValues[$kode]['max'];
-
+        
                 if ($type == 'Benefit') {
                     $alternatifValues[$alternatif->id][$kode] = $max != 0 ? $alternatif->$kode / $max : 0;
-                } else {
-                    $alternatifValues[$alternatif->id][$kode] = $min != 0 ? $alternatif->$kode / $min : 0;
+                } else if ($type == 'Cost') {
+                    $alternatifValues[$alternatif->id][$kode] = $min != 0 ? $min / $alternatif->$kode : 0;
                 }
             }
         }
+        
 
-        // Normalisasi bobot kriteria
-        $totalBobot = $kriterias->sum('bobot_kriteria');
-        $normalizedWeights = $kriterias->mapWithKeys(function ($item) use ($totalBobot) {
-            return [$item->kode_kriteria => $item->bobot_kriteria / $totalBobot];
-        });
+            // // Normalisasi bobot kriteria
+            // $totalBobot = $kriterias->sum('bobot_kriteria');
+            // $normalizedWeights = $kriterias->mapWithKeys(function ($item) use ($totalBobot) {
+            //     return [$item->kode_kriteria => $item->bobot_kriteria / $totalBobot];
+            // });
 
         // // Mendapatkan nilai WP untuk setiap alternatif
         // $ValueSAW = [];

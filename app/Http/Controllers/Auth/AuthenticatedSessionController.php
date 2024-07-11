@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,6 +16,35 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
+
+     public function loginByGoogle(Request $request)
+     {
+         $uid = $request->uid;
+         $name = $request->name;
+         $email = $request->email;
+     
+         // Cari pengguna berdasarkan uid
+         $user = User::where('uid', $uid)->first();
+     
+         // Jika pengguna tidak ditemukan, buat pengguna baru
+         if (!$user) {
+             $user = User::create([
+                 'name' => $name,
+                 'uid' => $uid,
+                 'email' => $email,
+                 'password' => bcrypt($uid)
+             ]);
+         }
+     
+         // Pastikan $user tidak null sebelum mencoba login
+             Auth::loginUsingId($user->id);
+     
+             return response()->json([
+                 'status' => 'success',
+                 'redirect' => route('dashboard')
+             ]);
+     }
+     
     public function create(): View
     {
         return view('auth.login');

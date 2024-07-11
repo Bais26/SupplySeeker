@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('C3');
             $table->string('C4');
             $table->string('C5');
-            $table->string('kriteria_id');
+            $table->string('kriteria_id')->nullable();
             $table->timestamps();
         });
     }   

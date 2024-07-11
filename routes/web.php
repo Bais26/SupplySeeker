@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\HitungController;
 use App\Http\Controllers\KriteriaController;
 // use App\Http\Controllers\nilaiController;
@@ -32,10 +33,19 @@ use App\Http\Controllers\AlternativeController;
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
+    // Route::post('/login/google', [AuthenticatedSessionController::class,'loginByGoogle'])->name('login.google');
+
+    Route::controller(AuthenticatedSessionController::class)->group(function () {
+        Route::post('login/google', 'loginByGoogle')->name('login.google');
+    
+    });
+    
+
     Route::resource('alternative', AlternativeController::class);
     Route::resource('kriteria', KriteriaController::class);
     // Route::resource('nilai', nilaiController::class);
     Route::get('/hitung', [HitungController::class, 'hitungSAW'])->name('hitung');
+    
 
     // Route::get('/home', function () {
     //   return redirect()->route('dashboard');  

@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="font-[sans-serif] bg-card text-[#333]">
         <div class="min-h-screen flex fle-col items-center justify-center lg:p-6 p-4">
             <div class="grid md:grid-cols-2 items-center gap-10 max-w-6xl w-full">
@@ -53,7 +54,7 @@
                     </div>
                     <p class="my-10 text-sm text-gray-400 text-center">or continue with</p>
                     <div class="space-x-6 flex justify-center">
-                        <a href="#" class="border-none outline-none">
+                        <a href="#" class="border-none outline-none" id="btnGoogle">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30px" class="inline" viewBox="0 0 512 512">
                                 <path fill="#fbbd00"
                                     d="M120 256c0-25.367 6.989-49.13 19.131-69.477v-86.308H52.823C18.568 144.703 0 198.922 0 256s18.568 111.297 52.823 155.785h86.308v-86.308C126.989 305.13 120 281.367 120 256z" />
@@ -90,4 +91,71 @@
             </div>
         </div>
     </div>
+    <script type="module">
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import {
+            getAuth,
+            GoogleAuthProvider,
+            signInWithPopup
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3zCbzYjWNkdAYyZRbSCQ8C0i4nOzMKkg",
+            authDomain: "supplyseeker-7686c.firebaseapp.com",
+            projectId: "supplyseeker-7686c",
+            storageBucket: "supplyseeker-7686c.appspot.com",
+            messagingSenderId: "838948924461",
+            appId: "1:838948924461:web:dccc910269706dc1f2dca4",
+            measurementId: "G-X88LNK08Z3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnGoogle = document.querySelector('#btnGoogle');
+            btnGoogle.addEventListener('click', function() {
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        const credential = GoogleAuthProvider.credentialFromResult(result);
+                        const token = credential.accessToken;
+                        const user = result.user;
+                        console.log('User signed in:', user);
+
+                        let tokenCSRF = $('meta[name="csrf-token"]').attr('content');
+
+                        $.ajax({
+                            url: '{{ route('login.google') }}',
+                            type: 'POST',
+                            data: {
+                                uid: user.uid,
+                                name: user.displayName,
+                                email: user.email,
+                                _token: tokenCSRF,
+                            },
+                            success: function(data) {
+                                console.log(data);
+                                window.location.href = data.redirect;
+                                // Handle success response
+                            },
+                            error: function(err) {
+                                console.log(err);
+                                // Handle error response
+                            }
+                        });
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        const email = error.customData ? error.customData.email : 'No email';
+                        const credential = GoogleAuthProvider.credentialFromError(error);
+                        console.error('Error signing in:', errorCode, errorMessage, email, credential);
+                    });
+            });
+        });
+    </script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </x-guest-layout>
